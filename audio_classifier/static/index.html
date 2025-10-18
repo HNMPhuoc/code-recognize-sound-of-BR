@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Audio Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        input,
+        button {
+            margin: 10px 0;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>🎧 Demo Nhận diện Âm thanh (Chim, Chuột...)</h2>
+    <input placeholder="audio" type="file" id="audioFile" accept="audio/*">
+    <button onclick="uploadAudio()">Phân tích</button>
+    <div id="result"></div>
+
+    <script>
+        async function uploadAudio() {
+            const file = document.getElementById('audioFile').files[0];
+            if (!file) return alert("Vui lòng chọn file âm thanh");
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            document.getElementById('result').innerText = "⏳ Đang xử lý...";
+            try {
+                const res = await fetch("http://127.0.0.1:8000/api/classify", {
+                    method: "POST",
+                    body: formData
+                });
+                const data = await res.json();
+                const label = data.result.label || 'Unknown';
+                const confidence = (data.result.confidence * 100).toFixed(2);
+                document.getElementById('result').innerText = 
+                    `✅ Kết quả: ${label} (${confidence}%)`;
+            } catch (err) {
+                console.error(err);
+                document.getElementById('result').innerText = "❌ Lỗi khi gửi request!";
+            }
+        }
+    </script>
+</body>
+
+</html>
