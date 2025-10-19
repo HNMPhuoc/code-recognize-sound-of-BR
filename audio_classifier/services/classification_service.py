@@ -7,5 +7,4 @@ def classify_audio(file_bytes: bytes):
     path = save_temp_file(file_bytes)
     waveform = load_audio(path)
     predictor = YamnetPredictor()
-    result = predictor.predict(waveform)
-    return result
+    return predictor.predict(waveform)
