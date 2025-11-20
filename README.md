@@ -44,3 +44,9 @@ Sử dụng 2 link url dưới đây:
     - Tiếng chim: https://xeno-canto.org/
     - Tiếng chuột: https://www.soundjay.com/animal/ hoặc https://freesound.org/search/?q=mouse+squeak
     - Các file kiểm tra âm thanh có sẵn trong file-test
+7. Hướng dẫn train
+    - Mở file train_bird_mouse_ann.ipynb
+    - Sửa đường dẫn tuyệt đối về dữ liệu training dòng DATA_DIR = r"D:\myproject\audio_classifier\audio_classifier\dataset" ở phần comment cấu hình
+    - Tùy chỉnh: 
+        + Sửa đầu ra dữ liệu ở file predictor.py
+        + Có thể điều chỉnh tham số vector hàm extract_embedding ở file train_bird_mouse_ann.ipynb
