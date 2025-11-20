@@ -1,5 +1,5 @@
 venv/
 temp/
 __pycache__/
-dataset/
-train_bird_mouse_ann.ipynb
+# dataset/
+# train_bird_mouse_ann.ipynb
